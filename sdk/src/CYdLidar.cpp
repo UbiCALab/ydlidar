@@ -133,7 +133,7 @@ bool  CYdLidar::doProcessSimple(LaserScan &outscan, bool &hardwareError){
             }
 
 
-            double scan_time = tim_scan_end - tim_scan_start;
+            double scan_time = (tim_scan_end - tim_scan_start)/1000000000.;
             int counts = all_nodes_counts*((m_MaxAngle-m_MinAngle)/360.0f);
             int angle_start = 180+m_MinAngle;
             int node_start = all_nodes_counts*(angle_start/360.0f);
