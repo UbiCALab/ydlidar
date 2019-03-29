@@ -1,7 +1,23 @@
-<robot
-  name="ydlidar">
-  <link
-    name="base_laser">
+<?xml version="1.0"?>
+<robot name="ydlidar" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="ydlidar" params="name parent *origin">
+    <link name="${name}_link">
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <joint name="${name}_base_joint" type="fixed">
+      <origin xyz="0.00 0 -0.05" rpy="0 0 0"/>
+      <parent link="${name}_link"/>
+      <child link="base_laser"/>
+    </joint>
+  </xacro:macro>
+
+  <link name="base_laser">
     <inertial>
       <origin
         xyz="-0.00029774 0.0066667 0.00013047"
